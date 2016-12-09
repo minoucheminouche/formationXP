@@ -12,4 +12,6 @@ public class ContinuousIntegrationTest {
 	public void testFailure() {
 		fail();
 	}
+	
+	
 }
