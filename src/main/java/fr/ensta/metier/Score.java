@@ -1,14 +1,19 @@
 package fr.ensta.metier;
 
+/**
+ * Classe score
+ * @author user
+ *
+ */
 public class Score {
-    private int score;
+    private Integer scoreTotal;
     private int[] tabScore;
     private int tourEnCours;
     final static int VALEUR_STRIKE = 10;
     final static int NB_TOURS = 10;
 
     public Score() {
-	score = 0;
+	scoreTotal = 0;
 	tabScore = new int[21];
 	tourEnCours = 0;
     }
@@ -37,26 +42,30 @@ public class Score {
 	this.tourEnCours = tourEnCours;
     }
 
+    public Integer getScoreTotal() {
+	return this.scoreTotal;
+    }
+
     /**
      * Calcule le score total du joueur
      */
     public int calculScore() {
-	int scoreTotal = 0;
+	this.scoreTotal = 0;
 	int indicetab = 0;
 
 	for (int i = 0; i < NB_TOURS; i++) {
 	    if (isStrike(indicetab)) {
-		scoreTotal += VALEUR_STRIKE + strikeBonus(indicetab);
-		indicetab += 2;
+		this.scoreTotal += VALEUR_STRIKE + strikeBonus(indicetab + 2);
+
 	    } else if (isSpare(indicetab)) {
-		scoreTotal += VALEUR_STRIKE + spareBonus(indicetab);
-		indicetab += 2;
+		this.scoreTotal += VALEUR_STRIKE + spareBonus(indicetab);
+
 	    } else {
-		scoreTotal += sommeLancers(indicetab);
-		indicetab += 2;
+		this.scoreTotal += sommeLancers(indicetab);
 	    }
+	    indicetab += 2;
 	}
-	return scoreTotal;
+	return this.scoreTotal;
     }
 
     public boolean isStrike(int indiceLancer) {
@@ -75,9 +84,9 @@ public class Score {
 	int score = 0;
 
 	if (isStrike(indiceLancer)) {
-	    score = sommeLancers(indiceLancer + 2);
+	    score = VALEUR_STRIKE + tabScore[indiceLancer + 2];
 	} else {
-	    score = sommeLancers(indiceLancer + 1);
+	    score = sommeLancers(indiceLancer);
 	}
 	return score;
     }
@@ -85,4 +94,5 @@ public class Score {
     private int spareBonus(int indiceLancer) {
 	return tabScore[indiceLancer + 2];
     }
+
 }

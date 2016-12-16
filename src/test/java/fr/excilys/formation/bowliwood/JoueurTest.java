@@ -91,4 +91,29 @@ public class JoueurTest extends TestCase {
 	assertEquals(62, j.getScore().calculScore());
     }
 
+    @Test
+    public void testCalculScoreBis() {
+
+	Joueur j = new Joueur("toto");
+
+	int[] tab = new int[21];
+	tab[0] = 5;
+	tab[1] = 2;
+	tab[2] = 10;
+	tab[3] = 0;
+	tab[4] = 8;
+	tab[5] = 1;
+	tab[6] = 8;
+	tab[7] = 2;
+	tab[8] = 8;
+	tab[9] = 2;
+	tab[10] = 2;
+	tab[11] = 2;
+	Score score = new Score();
+	score.setTabScore(tab);
+	j.setScore(score);
+
+	assertEquals(69, j.getScore().calculScore());
+    }
+
 }

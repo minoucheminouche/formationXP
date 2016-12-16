@@ -1,8 +1,13 @@
 package fr.ensta.metier;
 
+/**
+ * Classe joueur
+ * @author user
+ *
+ */
 public class Joueur {
 
-    private String name;
+    private final String name;
     private Score score;
 
     public Joueur(String name) {
@@ -14,10 +19,6 @@ public class Joueur {
 	return name;
     }
 
-    public void setName(String name) {
-	this.name = name;
-    }
-
     public Score getScore() {
 	return score;
     }
@@ -26,14 +27,9 @@ public class Joueur {
 	this.score = score;
     }
 
-    /**
-     * Place le score du joueur du lancer effectué (nombres de quilles tombées)
-     * 
-     * @param nbQuilles
-     *            : le nombre de quilles tombées lors du tour
-     */
-    public void updateScore(int nbQuilles) {
-
+    @Override
+    public String toString() {
+	return this.getName() + " - Score : " + this.getScore().getScoreTotal() + " points";
     }
 
 }
